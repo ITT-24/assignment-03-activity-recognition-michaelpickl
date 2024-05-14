@@ -1,8 +1,8 @@
 import pandas as pd
 
 NAME = 'michael'
-ACTION = 'running'
-NUMBER = 2
+ACTION = 'jumpingjacks'
+NUMBER = 5
 
 
 # read csv

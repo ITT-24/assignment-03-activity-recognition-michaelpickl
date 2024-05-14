@@ -85,8 +85,7 @@ def handle_gyroscope(data):
 def get_data():
     sensor.register_callback('gyroscope', handle_accelerometer)
     sensor.register_callback('gyroscope', handle_gyroscope)
-    
-    timer = time.time() - start_time
+    timer = time.time()
     return[timer, acc_x, acc_y, acc_z, gyro_x, gyro_y, gyro_z]
 
 #buttons to start getting data and to stop
@@ -103,7 +102,6 @@ sensor.register_callback('button_1', handle_button_press)
 while True:
     if(start_logging):
         df = pd.DataFrame(columns=COLUMNS)
-        start_time = time.time()
         for i in range(0, MAX_TIME):
             data_row = get_data()
             if(data_row):
