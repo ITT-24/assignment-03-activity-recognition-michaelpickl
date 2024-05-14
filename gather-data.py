@@ -13,7 +13,7 @@ sensor = SensorUDP(PORT)
 
 #variables
 ACTIVITIES = ['running', 'rowing', 'lifting', 'jumpingjacks']
-COLUMNS = ['id','timestamp','acc_x','acc_y','acc_z','gyro_x','gyro_y','gyro_z']
+COLUMNS = ['timestamp','acc_x','acc_y','acc_z','gyro_x','gyro_y','gyro_z']
 MAX_TIME = 10000
 NAME = 'michael'
 start_logging = False
@@ -85,8 +85,9 @@ def handle_gyroscope(data):
 def get_data():
     sensor.register_callback('gyroscope', handle_accelerometer)
     sensor.register_callback('gyroscope', handle_gyroscope)
-    timer = time.time()
-    return[activity, timer, acc_x, acc_y, acc_z, gyro_x, gyro_y, gyro_z]
+    
+    timer = time.time() - start_time
+    return[timer, acc_x, acc_y, acc_z, gyro_x, gyro_y, gyro_z]
 
 #buttons to start getting data and to stop
 def handle_button_press(data):
@@ -102,6 +103,7 @@ sensor.register_callback('button_1', handle_button_press)
 while True:
     if(start_logging):
         df = pd.DataFrame(columns=COLUMNS)
+        start_time = time.time()
         for i in range(0, MAX_TIME):
             data_row = get_data()
             if(data_row):
