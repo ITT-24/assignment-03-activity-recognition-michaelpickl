@@ -7,7 +7,7 @@ import re
 import pandas as pd
 import sys
 
-#connect phone with game
+#connect phone 
 PORT = 5700
 sensor = SensorUDP(PORT)
 
