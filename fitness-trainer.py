@@ -49,8 +49,6 @@ def handle_gyroscope(data):
     gyro_z = data.get("z")
 
 def get_data():
-    sensor.register_callback('gyroscope', handle_accelerometer)
-    sensor.register_callback('gyroscope', handle_gyroscope)
     return[acc_x, acc_y, acc_z, gyro_x, gyro_y, gyro_z]
 
 #classifier erstellen
@@ -71,6 +69,8 @@ def on_draw():
         case 'jumpingjacks':
             jumpingjack.draw()
 
+sensor.register_callback('gyroscope', handle_accelerometer)
+sensor.register_callback('gyroscope', handle_gyroscope)
 
 pyglet.app.run()
 

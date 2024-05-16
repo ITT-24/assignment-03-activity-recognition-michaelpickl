@@ -15,7 +15,8 @@ sensor = SensorUDP(PORT)
 ACTIVITIES = ['running', 'rowing', 'lifting', 'jumpingjacks']
 COLUMNS = ['timestamp','acc_x','acc_y','acc_z','gyro_x','gyro_y','gyro_z']
 MAX_TIME = 10000
-NAME = 'michael'
+# AS: hard coded :(
+NAME = 'tina'
 start_logging = False
 acc_x = acc_y = acc_z = 0
 gyro_x = gyro_y = gyro_z = 0
@@ -106,6 +107,7 @@ while True:
             data_row = get_data()
             if(data_row):
                 df.loc[len(df)] = data_row
+            print(i)
             time.sleep(0.001)
         save_data_to_csv(folder_path, filename, df)
         sys.exit()
